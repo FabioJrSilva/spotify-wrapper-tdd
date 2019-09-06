@@ -4,17 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/**/*.test.js"
   },
   "husky": {
     "hooks": {
       "pre-commit": "npm test"
     }
   },
-  "author": "\"Fabio Junior da Silva\"",
+  "author": "Fabio Junior da Silva",
   "license": "MIT",
   "dependencies": {
-    "husky": "^3.0.5"
+    "chai": "^4.2.0",
+    "husky": "^3.0.5",
+    "mocha": "^6.2.0"
   },
   "devDependencies": {
     "eslint": "^6.3.0",
