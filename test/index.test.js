@@ -1,8 +1,17 @@
-import { expect } from 'chai';
+import chai from 'chai';
+import sinon from 'sinon';
+import sinonChai from 'sinon-chai';
+import sinonStubPromise from 'sinon-stub-promise';
 import { search, searchAlbums, searchArtists, searchTracks, searchPlaylists } from '../src/index';
 
+chai.use(sinonChai);
+sinonStubPromise(sinon);
+const { expect } = chai;
+
+global.fetch = require('node-fetch');
+
 describe('Spotify Wrapper', () => {
-  context('smock tests', () => {
+  describe('smock tests', () => {
     it('method search should be exist', () => {
       expect(search).to.exist;
     });
@@ -21,6 +30,15 @@ describe('Spotify Wrapper', () => {
 
     it('method searchPlaylists should be exist', () => {
       expect(searchPlaylists).to.exist;
+    });
+  });
+
+  describe('Generic search', () => {
+    it('should call fetch function', () => {
+      const fetchedStub = sinon.stub(global, 'fetch');
+      const artist = search();
+
+      expect(fetchedStub).to.have.been.calledOnce;
     });
   });
 });

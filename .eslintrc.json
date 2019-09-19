@@ -7,7 +7,7 @@
   },
   "extends": ["airbnb-base"],
   "globals": {
-    "mocha": "readonly",
+    "fetch": true,
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
   },
