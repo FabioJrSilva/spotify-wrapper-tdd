@@ -1,9 +1,7 @@
-const { expect } = require('chai');
+import { expect } from 'chai';
 
-describe('Index', () => {
-  context('Module A', () => {
-    it('initial test', async () => {
-      expect(2 + 3).to.equals(5);
-    });
+describe('Inicial Test', () => {
+  it('should return 5', () => {
+    expect(3 + 3).to.equal(6);
   });
 });

@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/**/*.test.js"
+    "test": "./node_modules/.bin/mocha test/**/*.test.js --require @babel/register",
+    "tdd": "npm run test -- --watch"
   },
   "husky": {
     "hooks": {
@@ -19,6 +20,10 @@
     "mocha": "^6.2.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "@babel/node": "^7.6.1",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/register": "^7.6.0",
     "eslint": "^6.3.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2"
