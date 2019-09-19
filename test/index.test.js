@@ -34,11 +34,43 @@ describe('Spotify Wrapper', () => {
   });
 
   describe('Generic search', () => {
+    let fetchedStub;
+    beforeEach(() => {
+      fetchedStub = sinon.stub(global, 'fetch');
+    });
+
+    afterEach(() => {
+      fetchedStub.restore();
+    });
+
     it('should call fetch function', () => {
-      const fetchedStub = sinon.stub(global, 'fetch');
       const artist = search();
 
       expect(fetchedStub).to.have.been.calledOnce;
+    });
+
+    it('should receive correct url to fetch function', () => {
+      context('passing one type', () => {
+        const artist = search('Incubus', 'artist');
+
+        expect(fetchedStub).to.have.been.calledWith(
+          'https://api.spotify.com/v1/search?q=Incubus&type=artist',
+        );
+
+        const albums = search('Incubus', 'album');
+
+        expect(fetchedStub).to.have.been.calledWith(
+          'https://api.spotify.com/v1/search?q=Incubus&type=album',
+        );
+      });
+
+      context('passing more one type', () => {
+        const artistsAndAlbums = search('Incubus', ['artists', 'album']);
+
+        expect(fetchedStub).to.have.been.calledWith(
+          'https://api.spotify.com/v1/search?q=Incubus&type=artists,album',
+        );
+      });
     });
   });
 });
